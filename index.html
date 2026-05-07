@@ -331,7 +331,7 @@
 
       <section class="card">
         <div class="progress-wrap">
-          <span id="progress-label">1 / 16</span>
+          <span id="progress-label">1 / 18</span>
           <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
         </div>
 
@@ -369,7 +369,7 @@
           </div>
 
           <div class="step" data-step="5">
-            <span class="question">即使感觉不对劲，你是不是还是想知道最后一句到底是什么？</span>
+            <span class="question">最后一个问题，你准备好看答案了吗？</span>
             <div class="choices">
               <button type="button" class="choice-btn" data-key="q5" data-value="是">是</button>
               <button type="button" class="choice-btn" data-key="q5" data-value="不是">不是</button>
@@ -449,7 +449,7 @@
           </div>
 
           <div class="step" data-step="15">
-            <span class="question">最后一个问题，你准备好看答案了吗？</span>
+            <span class="question">即使感觉不对劲，你是不是还是想知道最后一句到底是什么？</span>
             <div class="choices">
               <button type="button" class="choice-btn" data-key="q15" data-value="是">是</button>
               <button type="button" class="choice-btn" data-key="q15" data-value="不是">不是</button>
@@ -457,6 +457,21 @@
           </div>
 
           <div class="step" data-step="16">
+            <span class="question">其实再问一个，你是不是讨厌我？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q16" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q16" data-value="不是">是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="17">
+            <span class="question">唉，伤心了</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q17" data-value="继续">继续</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="18">
             <span class="question">点击这里，公开最终结论</span>
             <p class="microcopy">嘿嘿</p>
             <button type="submit" class="submit-btn">查看答案</button>
@@ -503,6 +518,8 @@
         q13: "",
         q14: "",
         q15: "",
+        q16: "",
+        q17: "",
       };
 
       let currentStep = 0;
@@ -545,7 +562,7 @@
         return `王雅暄，统计结果出来了。你刚刚一共点了 ${yesCount} 次“是”，系统判定你属于“${hookLevel}”类型选手。咳咳，其实就是专门测试你的耐心的吧，嗯对！`;
       }
 
-      document.querySelectorAll(".choice-btn").forEach((button) => {
+      document.querySelectorAll(".step .choice-btn").forEach((button) => {
         button.addEventListener("click", () => {
           const parentStep = button.closest(".step");
           parentStep.querySelectorAll(".choice-btn").forEach((item) => {

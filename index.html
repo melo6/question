@@ -331,7 +331,7 @@
 
       <section class="card">
         <div class="progress-wrap">
-          <span>问答进度</span>
+          <span id="progress-label">1 / 16</span>
           <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
         </div>
 
@@ -369,7 +369,7 @@
           </div>
 
           <div class="step" data-step="5">
-            <span class="question">最后一个问题，你准备好看答案了吗？</span>
+            <span class="question">即使感觉不对劲，你是不是还是想知道最后一句到底是什么？</span>
             <div class="choices">
               <button type="button" class="choice-btn" data-key="q5" data-value="是">是</button>
               <button type="button" class="choice-btn" data-key="q5" data-value="不是">不是</button>
@@ -377,6 +377,86 @@
           </div>
 
           <div class="step" data-step="6">
+            <span class="question">如果我说接下来的问题有一点点重要，你是不是会继续看下去？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q6" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q6" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="7">
+            <span class="question">你是不是已经开始猜我到底想表达什么了？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q7" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q7" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="8">
+            <span class="question">如果我一直不说重点，你是不是会有点急？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q8" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q8" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="9">
+            <span class="question">但就算有点急，你是不是还是会继续往下点？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q9" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q9" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="10">
+            <span class="question">如果最后发现我在故意吊你胃口，你会不会先笑一下？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q10" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q10" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="11">
+            <span class="question">你是不是已经在想“这人到底还要铺垫多久”了？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q11" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q11" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="12">
+            <span class="question">如果我说真的快结束了，你会不会选择再信我一次？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q12" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q12" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="13">
+            <span class="question">假如我现在突然正经起来，你是不是反而会不习惯？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q13" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q13" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="14">
+            <span class="question">你是不是已经隐约感觉到这页不太对劲了？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q14" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q14" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="15">
+            <span class="question">最后一个问题，你准备好看答案了吗？</span>
+            <div class="choices">
+              <button type="button" class="choice-btn" data-key="q15" data-value="是">是</button>
+              <button type="button" class="choice-btn" data-key="q15" data-value="不是">不是</button>
+            </div>
+          </div>
+
+          <div class="step" data-step="16">
             <span class="question">点击这里，公开最终结论</span>
             <p class="microcopy">嘿嘿</p>
             <button type="submit" class="submit-btn">查看答案</button>
@@ -399,6 +479,7 @@
     <script>
       const steps = Array.from(document.querySelectorAll(".step"));
       const progressBar = document.getElementById("progress-bar");
+      const progressLabel = document.getElementById("progress-label");
       const form = document.getElementById("confession-form");
       const resultPanel = document.getElementById("result-panel");
       const resultTitle = document.getElementById("result-title");
@@ -412,6 +493,16 @@
         q3: "",
         q4: "",
         q5: "",
+        q6: "",
+        q7: "",
+        q8: "",
+        q9: "",
+        q10: "",
+        q11: "",
+        q12: "",
+        q13: "",
+        q14: "",
+        q15: "",
       };
 
       let currentStep = 0;
@@ -422,6 +513,7 @@
           step.classList.toggle("is-active", stepIndex === index);
         });
         progressBar.style.width = `${((index + 1) / steps.length) * 100}%`;
+        progressLabel.textContent = `${index + 1} / ${steps.length}`;
       }
 
       function nextStep() {
